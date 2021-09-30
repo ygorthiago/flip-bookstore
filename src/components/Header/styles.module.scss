@@ -1,0 +1,68 @@
+@import "../../styles/global.scss";
+
+.headerContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1.25rem 0;
+  width: 100%;
+
+  a {
+    transition: opacity 0.2s;
+    position: relative;
+    color: var(--grey);
+    
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.headerTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+
+  svg {
+    margin-right: 0.625rem;
+  }
+}
+
+.cart {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+
+  div {
+    text-align: right;
+
+    strong {
+      display: none;
+    }
+
+    span {
+      font-size: 0.75rem;
+      color: var(--mediumGrey);
+    }
+
+    @media (min-width: 768px) {
+      margin-right: 0.625rem;
+
+      strong {
+        display: block;
+      }
+    }
+  }
+
+  svg {
+    color: var(--grey);
+    font-size: 1.8rem;
+  }
+}

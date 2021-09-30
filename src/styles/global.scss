@@ -5,7 +5,11 @@
 }
 
 :root {
-  --white: #FFFFFF;
+  --white: #fcfcfc;
+  --lightGrey: #efefef;
+  --darkGrey: #222222;
+  --grey: #555555;
+  --mediumGrey: #888888;
 }
 
 html {
@@ -18,9 +22,22 @@ html {
   }
 }
 
-
 body, input, text-area, select, button {
   font: 400 1rem "Roboto", sans-serif;
+}
+
+body { 
+  background-color: var(--lightGrey);
+  -webkit-font-smoothing: antialiased;
+}
+
+p, span, legend {
+  color: var(--grey);
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+  font-weight: 600;
+  color: var(--darkGrey);
 }
 
 button {
