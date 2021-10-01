@@ -1,4 +1,5 @@
 import { MdAddShoppingCart } from 'react-icons/md';
+import { useCart } from '../../hooks/useCart';
 import { IBook } from '../../types';
 import s from './styles.module.scss';
 
@@ -7,6 +8,8 @@ interface IBookCard {
 }
 
 export function BookCard({ book }: IBookCard) {
+  const { addBook } = useCart();
+
   return (
     <div className={s.bookCardContainer}>
       <h3 className={s.bookTitle}>{book.title}</h3>
@@ -16,10 +19,11 @@ export function BookCard({ book }: IBookCard) {
         <p>{book.price}</p>
         <button
           type="button"
-          data-testid="add-product-button"
+          data-testid="add-book-button"
           className={s.addToCardButton}
+          onClick={() => addBook(book)}
         >
-          <div data-testid="cart-product-quantity">
+          <div data-testid="cart-book-quantity">
             <MdAddShoppingCart />
           </div>
 

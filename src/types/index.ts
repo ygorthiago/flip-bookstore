@@ -5,4 +5,5 @@ export interface IBook {
   price: string;
   image: string;
   url: string;
+  amount: number;
 }

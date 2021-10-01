@@ -3,8 +3,12 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { GiBookmarklet } from 'react-icons/gi';
 
 import s from './styles.module.scss';
+import { useCart } from '../../hooks/useCart';
 
 export function Header() {
+  const { cart } = useCart();
+  const cartSize = cart.length;
+
   return (
     <header className={s.headerContainer}>
       <Link className={s.headerTitle} to="/">
@@ -16,8 +20,7 @@ export function Header() {
         <div>
           <strong>Meu carrinho</strong>
           <span data-testid="cart-size">
-            {/* TO DO */}
-            2 itens
+            {cartSize === 1 ? `${cartSize} item` : `${cartSize} itens`}
           </span>
         </div>
         <FaShoppingCart />

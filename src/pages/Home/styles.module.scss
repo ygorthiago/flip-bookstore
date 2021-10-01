@@ -1,0 +1,35 @@
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    font-size: 1.25rem;
+    line-height: 2rem;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 1.25rem;
+  }
+}
+
+.bookListContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  > div {
+    margin-bottom: 1.875rem;
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
