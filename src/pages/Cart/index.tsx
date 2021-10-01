@@ -3,12 +3,14 @@ import {
   MdAddCircleOutline,
   MdRemoveCircleOutline,
 } from 'react-icons/md';
+import { IoChevronBack } from 'react-icons/io5';
 import { Header } from '../../components/Header';
 import s from './styles.module.scss';
 
 import { useCart } from '../../hooks/useCart';
 import { IBook } from '../../types';
 import { formatPrice } from '../../utils/FormatPrice';
+import { Link } from 'react-router-dom';
 
 export function Cart() {
   const { cart, removeBook, updateBookAmount } = useCart();
@@ -44,15 +46,21 @@ export function Cart() {
   return (
     <main className={s.cartContainer}>
       <Header />
-      <h1>Carrinho</h1>
+      <span className={s.backContainer}>
+        <Link to='/'>
+          <IoChevronBack />
+          Voltar
+        </Link>
+      </span>
+      <h1 className={s.title}>Carrinho</h1>
       {cartFormatted.map(book => {
         return (
-          <div className={s.cartItem} key={book.isbn13}>
+          <section className={s.cartItem} key={book.isbn13}>
             <img src={book.image} alt={book.title} />
             <div className={s.cartItemInfo}>
               <h3>{book.title}</h3>
               <legend>{book.subtitle}</legend>
-              <span>{book.subTotal}</span>
+              <p className={s.subTotal}>{book.subTotal}</p>
               <div className={s.amount}>
                 <button
                   type="button"
@@ -80,13 +88,15 @@ export function Cart() {
             >
               <MdDelete />
             </button>
-          </div>
+          </section>
         )
       })}
-      <footer className={s.total}>
-        <span>TOTAL</span>
-        <strong>{total}</strong>
-      </footer>
+      {cartFormatted.length ? (
+        <footer className={s.total}>
+          <span>TOTAL</span>
+          <strong>{total}</strong>
+        </footer>
+      ) : <footer className={s.cartEmpty}>Carrinho vazio</footer>}
     </main>
   );
 };

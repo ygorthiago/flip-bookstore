@@ -5,12 +5,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+
+  .title {
+    margin-bottom: 1rem;
+  }
 }
 
 .cartItem {
-  height: 12rem;
+  min-height: 12rem;
   width: 22rem;
+  padding: 1rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,6 +33,14 @@
     height: 10rem;
 
     border-radius: 1.5rem;
+  }
+
+  h3, legend {
+    max-width: 18rem;
+  }
+
+  .subTotal {
+    padding-top: 0.5rem;
   }
 
   .amount {
@@ -75,7 +87,7 @@
   height: 4rem;
   width: 22rem;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: flex-end;
   padding: 1rem;
   margin-bottom: 10px;
@@ -84,11 +96,9 @@
 
   border-radius: 1rem;
 
-  span {
-    color: var(--mediumGrey);
-    font-size: 18px;
-    font-weight: bold;
-  }
+  color: var(--mediumGrey);
+  font-size: 18px;
+  font-weight: bold;
 
   strong {
     font-size: 28px;
@@ -97,5 +107,43 @@
 
   @media (min-width: 768px) {
     width: 40rem;
+  }
+}
+
+.cartEmpty {
+  @extend .total;
+  justify-content: center;
+}
+
+.backContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 22rem;
+  margin-bottom: -2.5rem;
+  transition: all 0.2s;
+  
+  a {
+    align-self: flex-start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--grey);
+    cursor: pointer;
+    z-index: 1;
+
+    svg {
+      margin: 0;
+      font-size: 2rem;
+    }
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  @media (min-width: 768px) {
+    width: 40rem;
+    margin-left: 0;
   }
 }
