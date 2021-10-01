@@ -22,6 +22,10 @@ html {
   @media(max-width: 720px) {
     font-size: 87.5%;
   }
+
+  @media(max-width: 300px) {
+    font-size: 67.5%;
+  }
 }
 
 body, input, text-area, select, button {
