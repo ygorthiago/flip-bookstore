@@ -1,17 +1,18 @@
 import { useCallback, useState } from 'react';
 import { api } from '../services/api';
+import { IBookDetails } from '../types';
 
 export interface IUseBookHook {
   isBookDetailsOpen: boolean;
   setIsBookDetailsOpen: (isOpen: boolean) => void;
   openBookDetailsModal: (bookIsbn13: string) => void;
   closeBookDetailsModal: () => void;
-  bookDetails: any;
+  bookDetails: IBookDetails | undefined;
 }
 
 export function useBooksHook(): IUseBookHook {
   const [isBookDetailsOpen, setIsBookDetailsOpen] = useState(false);
-  const [bookDetails, setBookDetails] = useState();
+  const [bookDetails, setBookDetails] = useState<IBookDetails | undefined>();
 
   const openBookDetailsModal = useCallback((bookIsbn13: string) => {
     setIsBookDetailsOpen(true);

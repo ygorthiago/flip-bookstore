@@ -17,10 +17,10 @@ export function BookDetailsModal(): JSX.Element {
 
         {bookDetails ? (
           <>
-            <h3 className={s.bookTitle}>{bookDetails?.title}</h3>
-            <img src={bookDetails?.image} alt={bookDetails?.title} />
+            <h3 className={s.bookTitle}>{bookDetails.title}</h3>
+            <img src={bookDetails.image} alt={bookDetails.title} />
             <div className={s.bookInfos}>
-              <legend>{bookDetails?.desc}</legend>
+              <legend>{bookDetails.desc}</legend>
               <p className={s.price}>{bookDetails?.price}</p>
               <div className={s.bookDetails}>
                 <div>

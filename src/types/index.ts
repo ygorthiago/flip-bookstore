@@ -7,3 +7,13 @@ export interface IBook {
   url: string;
   amount: number;
 }
+
+export interface IBookDetails extends IBook {
+  desc: string;
+  authors: string;
+  publisher: string;
+  year: string;
+  language: string;
+  pages: string;
+  rating: string;
+}
