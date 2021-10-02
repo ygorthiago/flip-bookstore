@@ -1,4 +1,5 @@
 import { MdAddShoppingCart } from "react-icons/md";
+import { IoMdClose } from 'react-icons/io'
 import { VscStarFull } from "react-icons/vsc";
 import { useCart } from "../../contexts/useCart";
 import { Loader } from "../Loader";
@@ -11,6 +12,8 @@ export function BookDetailsModal() {
   return (
     <Modal isOpen={isBookDetailsOpen} setIsOpen={closeBookDetailsModal}>
       <div className={s.bookCardContainer}>
+      <IoMdClose onClick={closeBookDetailsModal} />
+
       {bookDetails ? (
         <>
           <h3 className={s.bookTitle}>{bookDetails?.title}</h3>
