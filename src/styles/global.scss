@@ -54,3 +54,20 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+*::-webkit-scrollbar {
+  width: 9px;
+  background: var(--mediumGrey);
+  }
+*::-webkit-scrollbar-thumb {
+  background: var(--grey);
+}
+
+// ReactModal
+[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.ReactModal__Body--open {
+  overflow-y: hidden;
+}
