@@ -3,7 +3,7 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { GiBookmarklet } from 'react-icons/gi';
 
 import s from './styles.module.scss';
-import { useCart } from '../../hooks/useCart';
+import { useCart } from '../../contexts/useCart';
 
 export function Header() {
   const { cart } = useCart();

@@ -7,7 +7,7 @@ jest.mock('react-router-dom', () => {
   };
 });
 
-jest.mock('../../hooks/useCart', () => {
+jest.mock('../../contexts/useCart', () => {
   return {
     useCart: () => ({
       cart: [

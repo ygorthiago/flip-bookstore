@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import { IBook } from '../types';
-import { IUseBookHook, useBooksHook } from './useBooks';
+import { IUseBookHook, useBooksHook } from '../hooks/useBooks';
 
 interface ICartProviderProps {
   children: ReactNode;

@@ -1,6 +1,6 @@
 import { MdAddShoppingCart } from "react-icons/md";
 import { VscStarFull } from "react-icons/vsc";
-import { useCart } from "../../hooks/useCart";
+import { useCart } from "../../contexts/useCart";
 import { Loader } from "../Loader";
 import Modal from "../Modal";
 import s from './styles.module.scss';

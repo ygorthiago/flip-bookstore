@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BookCard } from "../../components/BookCard";
 import { Header } from "../../components/Header";
 import { Loader } from "../../components/Loader";
-import { useCart } from "../../hooks/useCart";
+import { useCart } from "../../contexts/useCart";
 import { api } from "../../services/api";
 import { IBook } from "../../types";
 import s from './styles.module.scss';

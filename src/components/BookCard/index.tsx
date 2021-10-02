@@ -1,5 +1,5 @@
 import { MdAddShoppingCart } from 'react-icons/md';
-import { useCart } from '../../hooks/useCart';
+import { useCart } from '../../contexts/useCart';
 import { IBook } from '../../types';
 import s from './styles.module.scss';
 

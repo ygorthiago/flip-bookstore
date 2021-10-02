@@ -7,7 +7,7 @@ import { IoChevronBack } from 'react-icons/io5';
 import { Header } from '../../components/Header';
 import s from './styles.module.scss';
 
-import { useCart } from '../../hooks/useCart';
+import { useCart } from '../../contexts/useCart';
 import { IBook } from '../../types';
 import { formatPrice } from '../../utils/FormatPrice';
 import { Link } from 'react-router-dom';

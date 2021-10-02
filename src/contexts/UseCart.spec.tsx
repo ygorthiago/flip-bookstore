@@ -1,6 +1,6 @@
 import { renderHook, act } from '@testing-library/react-hooks';
 
-import { useCart, CartProvider } from '../hooks/useCart';
+import { useCart, CartProvider } from '../contexts/useCart';
 
 const mockedSetItemLocalStorage = jest.spyOn(Storage.prototype, 'setItem');
 const initialStoragedData = [

@@ -1,5 +1,5 @@
 import { BookDetailsModal } from "./components/BookDetailsModal";
-import { CartProvider } from "./hooks/useCart";
+import { CartProvider } from "./contexts/useCart";
 import { Routes } from "./routes";
 import './styles/global.scss'
 

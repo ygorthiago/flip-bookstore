@@ -1,7 +1,7 @@
 import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom'
 
-import { useCart } from '../../hooks/useCart';
+import { useCart } from '../../contexts/useCart';
 import { Cart } from '.';
 import { ReactNode } from 'react';
 
@@ -15,7 +15,7 @@ const mockedRemoveBook = jest.fn();
 const mockedUpdateBookAmount = jest.fn();
 const mockedUseCartHook = useCart as jest.Mock;
 
-jest.mock('../../hooks/useCart');
+jest.mock('../../contexts/useCart');
 
 describe('Cart Page', () => {
   beforeEach(() => {
