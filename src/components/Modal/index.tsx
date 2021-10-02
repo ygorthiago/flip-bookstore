@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 
 interface IModalProps {
-  children: any;
+  children: JSX.Element;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }
 
-const Modal = ({ children, isOpen, setIsOpen }: IModalProps) => {
+const Modal = ({ children, isOpen, setIsOpen }: IModalProps): JSX.Element => {
   const [modalStatus, setModalStatus] = useState(isOpen);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Modal = ({ children, isOpen, setIsOpen }: IModalProps) => {
 
   return (
     <ReactModal
-      shouldCloseOnOverlayClick={true}
+      shouldCloseOnOverlayClick
       onRequestClose={() => setIsOpen(false)}
       isOpen={modalStatus}
       ariaHideApp={false}

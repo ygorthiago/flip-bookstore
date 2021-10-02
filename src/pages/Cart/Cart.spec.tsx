@@ -1,9 +1,9 @@
 import { render, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
 
+import { ReactNode } from 'react';
 import { useCart } from '../../contexts/useCart';
 import { Cart } from '.';
-import { ReactNode } from 'react';
 
 jest.mock('react-router-dom', () => {
   return {
@@ -22,22 +22,22 @@ describe('Cart Page', () => {
     mockedUseCartHook.mockReturnValue({
       cart: [
         {
-          title: "Java Notes for Professionals",
-          subtitle: "Your Guided Tour Through the Programming Jungle",
-          isbn13: "1001630936399",
-          price: "$0.00",
-          image: "https://itbook.store/img/books/1001630936399.png",
-          url: "https://itbook.store/books/1001630936399",
-          amount: 1
+          title: 'Java Notes for Professionals',
+          subtitle: 'Your Guided Tour Through the Programming Jungle',
+          isbn13: '1001630936399',
+          price: '$0.00',
+          image: 'https://itbook.store/img/books/1001630936399.png',
+          url: 'https://itbook.store/books/1001630936399',
+          amount: 1,
         },
         {
-          title: "Java Notes for Professionals",
-          subtitle: "Your Guided Tour Through the Programming Jungle",
-          isbn13: "1001630936398",
-          price: "$0.00",
-          image: "https://itbook.store/img/books/1001630936399.png",
-          url: "https://itbook.store/books/1001630936399",
-          amount: 2
+          title: 'Java Notes for Professionals',
+          subtitle: 'Your Guided Tour Through the Programming Jungle',
+          isbn13: '1001630936398',
+          price: '$0.00',
+          image: 'https://itbook.store/img/books/1001630936399.png',
+          url: 'https://itbook.store/books/1001630936399',
+          amount: 2,
         },
       ],
       removeBook: mockedRemoveBook,
@@ -49,10 +49,8 @@ describe('Cart Page', () => {
     const { getAllByTestId, rerender } = render(<Cart />);
 
     const [incrementFirstBook] = getAllByTestId('increment-book');
-    const [ ,decrementSecondBook] = getAllByTestId('decrement-book');
-    const [firstBookAmount, secondBookAmount] = getAllByTestId(
-      'book-amount'
-    );
+    const [, decrementSecondBook] = getAllByTestId('decrement-book');
+    const [firstBookAmount, secondBookAmount] = getAllByTestId('book-amount');
 
     expect(firstBookAmount.textContent).toBe('1');
     expect(secondBookAmount.textContent).toBe('2');
@@ -72,22 +70,22 @@ describe('Cart Page', () => {
     mockedUseCartHook.mockReturnValueOnce({
       cart: [
         {
-          title: "Java Notes for Professionals",
-          subtitle: "Your Guided Tour Through the Programming Jungle",
-          isbn13: "1001630936399",
-          price: "$0.00",
-          image: "https://itbook.store/img/books/1001630936399.png",
-          url: "https://itbook.store/books/1001630936399",
-          amount: 2
+          title: 'Java Notes for Professionals',
+          subtitle: 'Your Guided Tour Through the Programming Jungle',
+          isbn13: '1001630936399',
+          price: '$0.00',
+          image: 'https://itbook.store/img/books/1001630936399.png',
+          url: 'https://itbook.store/books/1001630936399',
+          amount: 2,
         },
         {
-          title: "Java Notes for Professionals",
-          subtitle: "Your Guided Tour Through the Programming Jungle",
-          isbn13: "1001630936398",
-          price: "$0.00",
-          image: "https://itbook.store/img/books/1001630936399.png",
-          url: "https://itbook.store/books/1001630936399",
-          amount: 1
+          title: 'Java Notes for Professionals',
+          subtitle: 'Your Guided Tour Through the Programming Jungle',
+          isbn13: '1001630936398',
+          price: '$0.00',
+          image: 'https://itbook.store/img/books/1001630936399.png',
+          url: 'https://itbook.store/books/1001630936399',
+          amount: 1,
         },
       ],
     });
@@ -128,13 +126,13 @@ describe('Cart Page', () => {
     mockedUseCartHook.mockReturnValueOnce({
       cart: [
         {
-          title: "Java Notes for Professionals",
-          subtitle: "Your Guided Tour Through the Programming Jungle",
-          isbn13: "1001630936398",
-          price: "$0.00",
-          image: "https://itbook.store/img/books/1001630936399.png",
-          url: "https://itbook.store/books/1001630936399",
-          amount: 1
+          title: 'Java Notes for Professionals',
+          subtitle: 'Your Guided Tour Through the Programming Jungle',
+          isbn13: '1001630936398',
+          price: '$0.00',
+          image: 'https://itbook.store/img/books/1001630936399.png',
+          url: 'https://itbook.store/books/1001630936399',
+          amount: 1,
         },
       ],
     });

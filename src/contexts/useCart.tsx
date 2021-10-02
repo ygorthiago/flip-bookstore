@@ -1,4 +1,11 @@
-import { createContext, ReactNode, useContext, useEffect, useRef, useState } from 'react';
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { IBook } from '../types';
 import { IUseBookHook, useBooksHook } from '../hooks/useBooks';
 
@@ -20,7 +27,7 @@ interface CartContextData extends IUseBookHook {
 
 const CartContext = createContext<CartContextData>({} as CartContextData);
 
-export function CartProvider({ children }: ICartProviderProps) {
+export function CartProvider({ children }: ICartProviderProps): JSX.Element {
   const useBook = useBooksHook();
   const [cart, setCart] = useState<IBook[]>(() => {
     const storagedCart = localStorage.getItem('@Flip:cart');
@@ -32,11 +39,11 @@ export function CartProvider({ children }: ICartProviderProps) {
     return [];
   });
 
-  const prevCartRef = useRef<IBook[]>()
+  const prevCartRef = useRef<IBook[]>();
 
   useEffect(() => {
     prevCartRef.current = cart;
-  })
+  });
 
   const cartPreviousValue = prevCartRef.current ?? cart;
 
@@ -44,15 +51,18 @@ export function CartProvider({ children }: ICartProviderProps) {
     if (cartPreviousValue !== cart) {
       localStorage.setItem('@Flip:cart', JSON.stringify(cart));
     }
-  }, [cart, cartPreviousValue])
+  }, [cart, cartPreviousValue]);
 
   const addBook = async (book: IBook) => {
     try {
       const updatedCart = [...cart];
-      const bookAlreadyExistsOnCart = updatedCart
-        .find(updatedCartBook => updatedCartBook.isbn13 === book.isbn13);
+      const bookAlreadyExistsOnCart = updatedCart.find(
+        updatedCartBook => updatedCartBook.isbn13 === book.isbn13,
+      );
 
-      const currentAmount = bookAlreadyExistsOnCart ? bookAlreadyExistsOnCart.amount: 0;
+      const currentAmount = bookAlreadyExistsOnCart
+        ? bookAlreadyExistsOnCart.amount
+        : 0;
       const amount = currentAmount + 1;
 
       if (bookAlreadyExistsOnCart) {
@@ -61,7 +71,7 @@ export function CartProvider({ children }: ICartProviderProps) {
         const newBook = {
           ...book,
           amount: 1,
-        }
+        };
 
         updatedCart.push(newBook);
       }
@@ -74,8 +84,10 @@ export function CartProvider({ children }: ICartProviderProps) {
 
   const removeBook = (bookIsbn13: string) => {
     try {
-      const updatedCart = [...cart]
-      const bookIndex = updatedCart.findIndex(book => book.isbn13 === bookIsbn13);
+      const updatedCart = [...cart];
+      const bookIndex = updatedCart.findIndex(
+        book => book.isbn13 === bookIsbn13,
+      );
 
       if (bookIndex >= 0) {
         updatedCart.splice(bookIndex, 1);
@@ -85,7 +97,7 @@ export function CartProvider({ children }: ICartProviderProps) {
         throw Error();
       }
     } catch {
-      console.error('Error removing item.')
+      console.error('Error removing item.');
     }
   };
 
@@ -98,19 +110,20 @@ export function CartProvider({ children }: ICartProviderProps) {
         return;
       }
 
-      const updatedCart = [...cart]
+      const updatedCart = [...cart];
 
-      const bookAlreadyExistsOnCart = updatedCart
-        .find(book => book.isbn13 === bookIsbn13);
-      
+      const bookAlreadyExistsOnCart = updatedCart.find(
+        book => book.isbn13 === bookIsbn13,
+      );
+
       if (bookAlreadyExistsOnCart) {
-        bookAlreadyExistsOnCart.amount = amount
-        setCart(updatedCart)
+        bookAlreadyExistsOnCart.amount = amount;
+        setCart(updatedCart);
       } else {
         throw Error();
       }
     } catch {
-      console.error('Error updating item.')
+      console.error('Error updating item.');
     }
   };
 

@@ -5,7 +5,7 @@ import { GiBookmarklet } from 'react-icons/gi';
 import s from './styles.module.scss';
 import { useCart } from '../../contexts/useCart';
 
-export function Header() {
+export function Header(): JSX.Element {
   const { cart } = useCart();
   const cartSize = cart.length;
 
@@ -27,5 +27,4 @@ export function Header() {
       </Link>
     </header>
   );
-};
-
+}

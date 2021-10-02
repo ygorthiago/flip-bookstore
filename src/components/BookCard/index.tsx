@@ -8,13 +8,17 @@ interface IBookCard {
   openDetails: () => void;
 }
 
-export function BookCard({ book, openDetails }: IBookCard) {
+export function BookCard({ book, openDetails }: IBookCard): JSX.Element {
   const { addBook } = useCart();
 
   return (
-    <div className={s.bookCardContainer} onClick={openDetails}>
+    <div
+      className={s.bookCardContainer}
+      onClick={openDetails}
+      onKeyPress={openDetails}
+    >
       <h3 className={s.bookTitle}>{book.title}</h3>
-      <img src={book.image} alt={book.title} loading='lazy' />
+      <img src={book.image} alt={book.title} loading="lazy" />
       <div className={s.bookInfos}>
         <legend>{book.subtitle}</legend>
         <p>{book.price}</p>
@@ -31,5 +35,5 @@ export function BookCard({ book, openDetails }: IBookCard) {
         </button>
       </div>
     </div>
-  )
+  );
 }

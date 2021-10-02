@@ -1,9 +1,9 @@
-import { BookDetailsModal } from "./components/BookDetailsModal";
-import { CartProvider } from "./contexts/useCart";
-import { Routes } from "./routes";
-import './styles/global.scss'
+import { BookDetailsModal } from './components/BookDetailsModal';
+import { CartProvider } from './contexts/useCart';
+import { Routes } from './routes';
+import './styles/global.scss';
 
-function App() {
+function App(): JSX.Element {
   return (
     <CartProvider>
       <Routes />
