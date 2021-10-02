@@ -13,7 +13,7 @@ import { formatPrice } from '../../utils/FormatPrice';
 import { Link } from 'react-router-dom';
 
 export function Cart() {
-  const { cart, removeBook, updateBookAmount } = useCart();
+  const { cart, removeBook, updateBookAmount, openBookDetailsModal } = useCart();
 
   const cartFormatted = cart.map(book => {
     const price = book.price.replace('$', '')
@@ -56,9 +56,9 @@ export function Cart() {
       {cartFormatted.map(book => {
         return (
           <section className={s.cartItem} key={book.isbn13}>
-            <img src={book.image} alt={book.title} />
+            <img src={book.image} alt={book.title} onClick={() => openBookDetailsModal(book.isbn13)} />
             <div className={s.cartItemInfo}>
-              <h3>{book.title}</h3>
+              <h3 onClick={() => openBookDetailsModal(book.isbn13)}>{book.title}</h3>
               <legend>{book.subtitle}</legend>
               <p className={s.subTotal}>{book.subTotal}</p>
               <div className={s.amount}>

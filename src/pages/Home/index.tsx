@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { BookCard } from "../../components/BookCard";
 import { Header } from "../../components/Header";
 import { Loader } from "../../components/Loader";
+import { useCart } from "../../hooks/useCart";
 import { api } from "../../services/api";
 import { IBook } from "../../types";
 import s from './styles.module.scss';
@@ -9,7 +10,8 @@ import s from './styles.module.scss';
 export function Home() {
   const [books, setBooks] = useState<IBook[]>([])
   const [isLoading, setIsLoading] = useState(false)
-  
+  const { openBookDetailsModal } = useCart()
+
   useEffect(() => {
     setIsLoading(true)
 
@@ -25,7 +27,7 @@ export function Home() {
       <Header />
       <article className={s.bookListContainer} data-testid='list-books'>
         {books && books.map(book =>{
-          return <BookCard key={book.isbn13} book={book} />
+          return <BookCard key={book.isbn13} book={book} openDetails={() => openBookDetailsModal(book.isbn13)} />
         } 
         )}
         {isLoading && <Loader />}
