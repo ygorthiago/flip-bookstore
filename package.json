@@ -30,6 +30,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --silent",
+    "coverage": "npm test -- --verbose=false --coverage --silent --noStackTrace",
     "eject": "react-scripts eject",
     "lint": "eslint --color \"./src/**/*.{tsx,ts}\""
   },
