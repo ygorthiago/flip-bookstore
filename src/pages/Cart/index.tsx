@@ -70,7 +70,7 @@ export function Cart() {
                 >
                   <MdRemoveCircleOutline size={20} />
                 </button>
-                <p>{book.amount}</p>
+                <p data-testid="book-amount">{book.amount}</p>
                 <button
                   type="button"
                   data-testid="increment-book"

@@ -23,7 +23,7 @@ export function BookCard({ book }: IBookCard) {
           className={s.addToCardButton}
           onClick={() => addBook(book)}
         >
-          <div data-testid="cart-book-quantity">
+          <div>
             <MdAddShoppingCart />
           </div>
 

@@ -23,7 +23,7 @@ export function Home() {
   return (
     <main className={s.homeContainer}>
       <Header />
-      <article className={s.bookListContainer}>
+      <article className={s.bookListContainer} data-testid='list-books'>
         {books && books.map(book =>{
           return <BookCard key={book.isbn13} book={book} />
         } 
