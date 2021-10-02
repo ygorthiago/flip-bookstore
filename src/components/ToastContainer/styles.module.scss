@@ -1,0 +1,13 @@
+
+.toastContainer {
+  position: fixed;
+  right: 0;
+  top: 2.5rem;
+  padding: 1.8rem 0.625rem;
+  overflow: hidden;
+  z-index: 1000;
+
+  @media (min-width: 600px) {
+    padding: 1.875rem;
+  }
+}

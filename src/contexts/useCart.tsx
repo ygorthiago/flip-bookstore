@@ -8,6 +8,7 @@ import {
 } from 'react';
 import { IBook } from '../types';
 import { IUseBookHook, useBooksHook } from '../hooks/useBooks';
+import { IToastHook, useToastHook } from '../hooks/useToast';
 
 interface ICartProviderProps {
   children: ReactNode;
@@ -18,7 +19,7 @@ interface IUpdateBookAmount {
   amount: number;
 }
 
-interface CartContextData extends IUseBookHook {
+interface CartContextData extends IUseBookHook, IToastHook {
   cart: IBook[];
   addBook: (book: IBook) => Promise<void>;
   removeBook: (bookIsbn13: string) => void;
@@ -29,6 +30,7 @@ const CartContext = createContext<CartContextData>({} as CartContextData);
 
 export function CartProvider({ children }: ICartProviderProps): JSX.Element {
   const useBook = useBooksHook();
+  const useToast = useToastHook();
   const [cart, setCart] = useState<IBook[]>(() => {
     const storagedCart = localStorage.getItem('@Flip:cart');
 
@@ -77,6 +79,7 @@ export function CartProvider({ children }: ICartProviderProps): JSX.Element {
       }
 
       setCart(updatedCart);
+      useToast.addToast('Livro adicionado ao carrinho!');
     } catch {
       console.error('Error adding item.');
     }
@@ -129,7 +132,14 @@ export function CartProvider({ children }: ICartProviderProps): JSX.Element {
 
   return (
     <CartContext.Provider
-      value={{ cart, addBook, removeBook, updateBookAmount, ...useBook }}
+      value={{
+        cart,
+        addBook,
+        removeBook,
+        updateBookAmount,
+        ...useBook,
+        ...useToast,
+      }}
     >
       {children}
     </CartContext.Provider>
