@@ -5,11 +5,11 @@
   width: 21.438rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   background-color: var(--white);
-  cursor: pointer;
   border-radius: 1rem;
+  box-shadow: 0px 81px 106px rgba(0, 0, 0, 0.07), 0px 10.1425px 13.2728px rgba(0, 0, 0, 0.0290085);
 
   img {
     max-width: 15rem;
@@ -23,10 +23,17 @@
     text-align: center;
   }
 
-  box-shadow: 0px 81px 106px rgba(0, 0, 0, 0.07), 0px 10.1425px 13.2728px rgba(0, 0, 0, 0.0290085);
-
   &:hover {
-    border: 1.5px solid var(--green);
+      border: 1.5px solid var(--green);
+  }
+
+  .book {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    
   }
 }
 
@@ -39,7 +46,7 @@
   padding: 0.62rem 1.25rem;
 
   p {
-    margin: 1rem 0;
+    margin-top: 1rem;
   }
 }
 
@@ -48,7 +55,7 @@
   font-size: 1.2rem;
   line-height: 1rem;
   letter-spacing: 0.01em;
-  padding: 0.5rem 1.2rem 0 1rem;
+  padding: 0.5rem 1.3rem 0 1rem;
   text-align: center;
   line-height: 1.25;
 
@@ -64,7 +71,6 @@
   border: 0;
   border-radius: 4px;
   overflow: hidden;
-  margin-top: auto;
   display: flex;
   align-items: center;
   align-self: center;

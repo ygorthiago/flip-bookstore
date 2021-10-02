@@ -20,7 +20,7 @@
   align-items: center;
   flex-wrap: wrap;
 
-  > div {
+  > section {
     margin-bottom: 1.875rem;
   }
 
@@ -32,4 +32,10 @@
     flex-wrap: wrap;
     width: 100%;
   }
+}
+
+.loaderContainer {
+  height: 50vw;
+  display: flex;
+  align-items: center;
 }

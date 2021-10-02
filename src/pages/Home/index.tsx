@@ -40,8 +40,12 @@ export function Home(): JSX.Element {
               />
             );
           })}
-        {isLoading && <Loader />}
       </article>
+      {isLoading && (
+        <div className={s.loaderContainer}>
+          <Loader />
+        </div>
+      )}
     </main>
   );
 }
