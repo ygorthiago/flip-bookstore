@@ -13,6 +13,7 @@ const mockedBook = {
 };
 
 const mockedAddBook = jest.fn();
+const mockedOpenBookDetails = jest.fn();
 const mockedUseCartHook = useFlipContext as jest.Mock;
 
 jest.mock('../../contexts/useFlipContext');
@@ -45,11 +46,11 @@ describe('BookCard Component', () => {
   });
 
   it('should be able to render BookCard component', () => {
-    const headerComponent = render(
+    const component = render(
       <BookCard book={mockedBook} openDetails={jest.fn} />,
     );
 
-    expect(headerComponent).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
   it('should be able to add a book to cart', async () => {
@@ -62,5 +63,17 @@ describe('BookCard Component', () => {
     fireEvent.click(addFirstBook);
 
     expect(mockedAddBook).toHaveBeenCalled();
+  });
+
+  it('should be able to open BookDetailsModal when the card is clicked', async () => {
+    const { getByTestId } = render(
+      <BookCard book={mockedBook} openDetails={mockedOpenBookDetails} />,
+    );
+
+    const addFirstBook = getByTestId('book-card-info');
+
+    fireEvent.click(addFirstBook);
+
+    expect(mockedOpenBookDetails).toHaveBeenCalled();
   });
 });

@@ -13,7 +13,12 @@ export function BookCard({ book, openDetails }: IBookCard): JSX.Element {
 
   return (
     <section className={s.bookCardContainer}>
-      <div className={s.book} onClick={openDetails} onKeyPress={openDetails}>
+      <div
+        className={s.book}
+        onClick={openDetails}
+        data-testid="book-card-info"
+        onKeyPress={openDetails}
+      >
         <h3 className={s.bookTitle}>{book.title}</h3>
         <img src={book.image} alt={book.title} loading="lazy" />
         <div className={s.bookInfos}>

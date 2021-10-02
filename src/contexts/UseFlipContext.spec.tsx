@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import { FlipProvider, useFlipContext } from '../contexts/useFlipContext';
+import { FlipProvider, useFlipContext } from './useFlipContext';
 
 const mockedSetItemLocalStorage = jest.spyOn(Storage.prototype, 'setItem');
 const initialStoragedData = [
@@ -23,7 +23,7 @@ const initialStoragedData = [
   },
 ];
 
-describe('useCart Hook', () => {
+describe('UseFlip Context', () => {
   beforeEach(() => {
     jest
       .spyOn(Storage.prototype, 'getItem')
@@ -75,7 +75,7 @@ describe('useCart Hook', () => {
     };
 
     act(() => {
-      result.current.addBook(mockedBook);
+      result.current.addBookToCart(mockedBook);
     });
 
     expect(result.current.cart).toEqual(
@@ -243,6 +243,23 @@ describe('useCart Hook', () => {
         },
       ]),
     );
+
+    expect(mockedSetItemLocalStorage).toHaveBeenCalledWith(
+      '@Flip:cart',
+      JSON.stringify(result.current.cart),
+    );
+  });
+
+  it('should be able to finish checkout', () => {
+    const { result } = renderHook(useFlipContext, {
+      wrapper: FlipProvider,
+    });
+
+    act(() => {
+      result.current.finishCheckout();
+    });
+
+    expect(result.current.cart).toEqual(expect.arrayContaining([]));
 
     expect(mockedSetItemLocalStorage).toHaveBeenCalledWith(
       '@Flip:cart',
