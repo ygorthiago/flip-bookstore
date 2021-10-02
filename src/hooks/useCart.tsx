@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import { IBook } from '../types';
+import { IUseBookHook, useBooksHook } from './useBooks';
 
 interface ICartProviderProps {
   children: ReactNode;
@@ -10,7 +11,7 @@ interface IUpdateBookAmount {
   amount: number;
 }
 
-interface CartContextData {
+interface CartContextData extends IUseBookHook {
   cart: IBook[];
   addBook: (book: IBook) => Promise<void>;
   removeBook: (bookIsbn13: string) => void;
@@ -20,6 +21,7 @@ interface CartContextData {
 const CartContext = createContext<CartContextData>({} as CartContextData);
 
 export function CartProvider({ children }: ICartProviderProps) {
+  const useBook = useBooksHook();
   const [cart, setCart] = useState<IBook[]>(() => {
     const storagedCart = localStorage.getItem('@Flip:cart');
 
@@ -114,7 +116,7 @@ export function CartProvider({ children }: ICartProviderProps) {
 
   return (
     <CartContext.Provider
-      value={{ cart, addBook, removeBook, updateBookAmount }}
+      value={{ cart, addBook, removeBook, updateBookAmount, ...useBook }}
     >
       {children}
     </CartContext.Provider>
