@@ -8,9 +8,12 @@ export interface IUseBookHook {
   openBookDetailsModal: (bookIsbn13: string) => void;
   closeBookDetailsModal: () => void;
   bookDetails: IBookDetails | undefined;
+  isCheckoutSuccessOpen: boolean;
+  setIsCheckoutSuccessOpen: (isOpen: boolean) => void;
 }
 
 export function useBooksHook(): IUseBookHook {
+  const [isCheckoutSuccessOpen, setIsCheckoutSuccessOpen] = useState(false);
   const [isBookDetailsOpen, setIsBookDetailsOpen] = useState(false);
   const [bookDetails, setBookDetails] = useState<IBookDetails | undefined>();
 
@@ -38,5 +41,7 @@ export function useBooksHook(): IUseBookHook {
     openBookDetailsModal,
     closeBookDetailsModal,
     bookDetails,
+    isCheckoutSuccessOpen,
+    setIsCheckoutSuccessOpen,
   };
 }

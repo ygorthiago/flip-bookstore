@@ -15,7 +15,11 @@ export function BookDetailsModal(): JSX.Element {
   } = useFlipContext();
 
   return (
-    <Modal isOpen={isBookDetailsOpen} setIsOpen={closeBookDetailsModal}>
+    <Modal
+      isOpen={isBookDetailsOpen}
+      setIsOpen={closeBookDetailsModal}
+      closeOnOverlay
+    >
       <div className={s.bookCardContainer}>
         <IoMdClose onClick={closeBookDetailsModal} />
         {bookDetails ? (

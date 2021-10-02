@@ -98,11 +98,12 @@
 }
 
 .total {
-  height: 4rem;
+  min-height: 4rem;
   width: 22rem;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  flex-wrap: wrap-reverse;
   padding: 1rem;
   margin-bottom: 10px;
   background-color: var(--white);
@@ -119,8 +120,32 @@
     margin-left: 5px;
   }
 
+  button {
+    background: linear-gradient(114.44deg, var(--green) 0%, var(--lightGreen) 100%);
+    color: var(--white);
+    border: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    padding: 0.625rem;
+    transition: opacity 0.2s;
+    z-index: 10;
+    margin-top: 0.625rem;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
   @media (min-width: 768px) {
     width: 40rem;
+    justify-content: space-around;
+
+    button {
+      margin-top: 0;
+    }
   }
 }
 

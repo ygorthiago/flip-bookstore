@@ -11,10 +11,16 @@ import s from './styles.module.scss';
 import { useFlipContext } from '../../contexts/useFlipContext';
 import { IBook } from '../../types';
 import { formatPrice } from '../../utils/FormatPrice';
+import { CheckoutSuccessModal } from '../../components/CheckoutSuccess';
 
 export function Cart(): JSX.Element {
-  const { cart, removeBook, updateBookAmount, openBookDetailsModal } =
-    useFlipContext();
+  const {
+    cart,
+    removeBook,
+    updateBookAmount,
+    openBookDetailsModal,
+    finishCheckout,
+  } = useFlipContext();
 
   const cartFormatted = cart.map(book => {
     const price = book.price.replace('$', '');
@@ -104,12 +110,18 @@ export function Cart(): JSX.Element {
       })}
       {cartFormatted.length ? (
         <footer className={s.total}>
-          <span>TOTAL</span>
-          <strong>{total}</strong>
+          <button type="button" onClick={finishCheckout}>
+            Finalizar compra
+          </button>
+          <div>
+            <span>TOTAL</span>
+            <strong>{total}</strong>
+          </div>
         </footer>
       ) : (
         <footer className={s.cartEmpty}>Carrinho vazio</footer>
       )}
+      <CheckoutSuccessModal />
     </main>
   );
 }

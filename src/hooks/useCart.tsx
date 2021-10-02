@@ -8,6 +8,7 @@ interface IUpdateBookAmount {
 
 export interface ICartHook {
   cart: IBook[];
+  setCart: (book: IBook[]) => void;
   addBook: (book: IBook) => Promise<void>;
   removeBook: (bookIsbn13: string) => void;
   updateBookAmount: ({ bookIsbn13, amount }: IUpdateBookAmount) => void;
@@ -118,5 +119,5 @@ export function useCartHook(): ICartHook {
     [cart],
   );
 
-  return { cart, addBook, removeBook, updateBookAmount };
+  return { cart, setCart, addBook, removeBook, updateBookAmount };
 }

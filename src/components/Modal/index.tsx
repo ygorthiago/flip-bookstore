@@ -6,9 +6,15 @@ interface IModalProps {
   children: JSX.Element;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  closeOnOverlay: boolean;
 }
 
-const Modal = ({ children, isOpen, setIsOpen }: IModalProps): JSX.Element => {
+const Modal = ({
+  children,
+  isOpen,
+  setIsOpen,
+  closeOnOverlay,
+}: IModalProps): JSX.Element => {
   const [modalStatus, setModalStatus] = useState(isOpen);
 
   useEffect(() => {
@@ -17,7 +23,7 @@ const Modal = ({ children, isOpen, setIsOpen }: IModalProps): JSX.Element => {
 
   return (
     <ReactModal
-      shouldCloseOnOverlayClick
+      shouldCloseOnOverlayClick={closeOnOverlay}
       onRequestClose={() => setIsOpen(false)}
       isOpen={modalStatus}
       ariaHideApp={false}

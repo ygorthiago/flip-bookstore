@@ -19,6 +19,7 @@ interface IFlipContextData extends IUseBookHook, IToastHook {
   removeBook: (bookIsbn13: string) => void;
   updateBookAmount: ({ bookIsbn13, amount }: IUpdateBookAmount) => void;
   addBookToCart: (book: IBook) => void;
+  finishCheckout: () => void;
 }
 
 const CartContext = createContext<IFlipContextData>({} as IFlipContextData);
@@ -35,10 +36,16 @@ export function FlipProvider({ children }: ICartProviderProps): JSX.Element {
     [useCart, useToast],
   );
 
+  const finishCheckout = useCallback(() => {
+    useBook.setIsCheckoutSuccessOpen(true);
+    useCart.setCart([]);
+  }, [useBook, useCart]);
+
   return (
     <CartContext.Provider
       value={{
         addBookToCart,
+        finishCheckout,
         ...useCart,
         ...useBook,
         ...useToast,
