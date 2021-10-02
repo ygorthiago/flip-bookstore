@@ -2,7 +2,7 @@ import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { ReactNode } from 'react';
-import { useCart } from '../../contexts/useCart';
+import { useFlipContext } from '../../contexts/useFlipContext';
 import { Cart } from '.';
 
 jest.mock('react-router-dom', () => {
@@ -13,9 +13,9 @@ jest.mock('react-router-dom', () => {
 
 const mockedRemoveBook = jest.fn();
 const mockedUpdateBookAmount = jest.fn();
-const mockedUseCartHook = useCart as jest.Mock;
+const mockedUseCartHook = useFlipContext as jest.Mock;
 
-jest.mock('../../contexts/useCart');
+jest.mock('../../contexts/useFlipContext');
 
 describe('Cart Page', () => {
   beforeEach(() => {

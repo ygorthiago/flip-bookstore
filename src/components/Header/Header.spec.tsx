@@ -8,9 +8,9 @@ jest.mock('react-router-dom', () => {
   };
 });
 
-jest.mock('../../contexts/useCart', () => {
+jest.mock('../../contexts/useFlipContext', () => {
   return {
-    useCart: () => ({
+    useFlipContext: () => ({
       cart: [
         {
           title: 'Java Notes for Professionals',

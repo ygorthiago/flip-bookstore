@@ -1,6 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-
-import { useCart, CartProvider } from './useCart';
+import { FlipProvider, useFlipContext } from '../contexts/useFlipContext';
 
 const mockedSetItemLocalStorage = jest.spyOn(Storage.prototype, 'setItem');
 const initialStoragedData = [
@@ -32,8 +31,8 @@ describe('useCart Hook', () => {
   });
 
   it('should be able to initialize cart with localStorage value', () => {
-    const { result } = renderHook(useCart, {
-      wrapper: CartProvider,
+    const { result } = renderHook(useFlipContext, {
+      wrapper: FlipProvider,
     });
 
     expect(result.current.cart).toEqual(
@@ -61,8 +60,8 @@ describe('useCart Hook', () => {
   });
 
   it('should be able to add a new book', async () => {
-    const { result } = renderHook(useCart, {
-      wrapper: CartProvider,
+    const { result } = renderHook(useFlipContext, {
+      wrapper: FlipProvider,
     });
 
     const mockedBook = {
@@ -127,8 +126,8 @@ describe('useCart Hook', () => {
       amount: 1,
     };
 
-    const { result } = renderHook(useCart, {
-      wrapper: CartProvider,
+    const { result } = renderHook(useFlipContext, {
+      wrapper: FlipProvider,
     });
 
     act(() => {
@@ -166,8 +165,8 @@ describe('useCart Hook', () => {
   it('should be able to remove a book', () => {
     const bookIsbn13 = '1001630936398';
 
-    const { result } = renderHook(useCart, {
-      wrapper: CartProvider,
+    const { result } = renderHook(useFlipContext, {
+      wrapper: FlipProvider,
     });
 
     act(() => {
@@ -197,8 +196,8 @@ describe('useCart Hook', () => {
   it('should not be able to remove a book that does not exist on cart', () => {
     const bookIsbn13 = '9999999999';
 
-    const { result } = renderHook(useCart, {
-      wrapper: CartProvider,
+    const { result } = renderHook(useFlipContext, {
+      wrapper: FlipProvider,
     });
 
     act(() => {
@@ -214,8 +213,8 @@ describe('useCart Hook', () => {
   it('should be able to update a book amount', async () => {
     const bookIsbn13 = '1001630936399';
 
-    const { result } = renderHook(useCart, {
-      wrapper: CartProvider,
+    const { result } = renderHook(useFlipContext, {
+      wrapper: FlipProvider,
     });
 
     act(() => {

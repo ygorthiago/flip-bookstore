@@ -1,10 +1,10 @@
 import { useTransition } from 'react-spring';
 import Toast from './Toast';
 import s from './styles.module.scss';
-import { useCart } from '../../contexts/useCart';
+import { useFlipContext } from '../../contexts/useFlipContext';
 
 function ToastContainer(): JSX.Element {
-  const { messages } = useCart();
+  const { messages } = useFlipContext();
 
   const messagesWithTransitions = useTransition(
     messages,

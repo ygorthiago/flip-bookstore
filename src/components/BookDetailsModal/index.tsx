@@ -1,20 +1,23 @@
 import { MdAddShoppingCart } from 'react-icons/md';
 import { IoMdClose } from 'react-icons/io';
 import { VscStarFull } from 'react-icons/vsc';
-import { useCart } from '../../contexts/useCart';
+import { useFlipContext } from '../../contexts/useFlipContext';
 import { Loader } from '../Loader';
 import Modal from '../Modal';
 import s from './styles.module.scss';
 
 export function BookDetailsModal(): JSX.Element {
-  const { addBook, isBookDetailsOpen, closeBookDetailsModal, bookDetails } =
-    useCart();
+  const {
+    addBookToCart,
+    isBookDetailsOpen,
+    closeBookDetailsModal,
+    bookDetails,
+  } = useFlipContext();
 
   return (
     <Modal isOpen={isBookDetailsOpen} setIsOpen={closeBookDetailsModal}>
       <div className={s.bookCardContainer}>
         <IoMdClose onClick={closeBookDetailsModal} />
-
         {bookDetails ? (
           <>
             <h3 className={s.bookTitle}>{bookDetails.title}</h3>
@@ -54,7 +57,7 @@ export function BookDetailsModal(): JSX.Element {
                 type="button"
                 data-testid="add-book-button"
                 className={s.addToCardButton}
-                onClick={() => addBook(bookDetails)}
+                onClick={() => addBookToCart(bookDetails)}
               >
                 <div>
                   <MdAddShoppingCart />

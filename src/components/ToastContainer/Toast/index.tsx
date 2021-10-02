@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { FiCheckCircle, FiXCircle } from 'react-icons/fi';
 import { animated } from 'react-spring';
-import { useCart } from '../../../contexts/useCart';
+import { useFlipContext } from '../../../contexts/useFlipContext';
 
 import s from './styles.module.scss';
 
@@ -12,7 +12,7 @@ interface ToastProps {
 }
 
 function Toast({ id, message, style }: ToastProps): JSX.Element {
-  const { removeToast } = useCart();
+  const { removeToast } = useFlipContext();
 
   useEffect(() => {
     const timer = setTimeout(() => {

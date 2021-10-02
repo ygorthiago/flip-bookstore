@@ -4,7 +4,7 @@ import AxiosMock from 'axios-mock-adapter';
 import { ReactNode } from 'react';
 import { Home } from '.';
 import { api } from '../../services/api';
-import { useCart } from '../../contexts/useCart';
+import { useFlipContext } from '../../contexts/useFlipContext';
 
 jest.mock('react-router-dom', () => {
   return {
@@ -13,8 +13,8 @@ jest.mock('react-router-dom', () => {
 });
 
 const apiMock = new AxiosMock(api);
-const mockedUseCartHook = useCart as jest.Mock;
-jest.mock('../../contexts/useCart');
+const mockedUseCartHook = useFlipContext as jest.Mock;
+jest.mock('../../contexts/useFlipContext');
 
 describe('Home Page', () => {
   beforeEach(() => {

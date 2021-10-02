@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { BookCard } from '../../components/BookCard';
 import { Header } from '../../components/Header';
 import { Loader } from '../../components/Loader';
-import { useCart } from '../../contexts/useCart';
+import { useFlipContext } from '../../contexts/useFlipContext';
 import { api } from '../../services/api';
 import { IBook } from '../../types';
 import s from './styles.module.scss';
@@ -10,7 +10,7 @@ import s from './styles.module.scss';
 export function Home(): JSX.Element {
   const [books, setBooks] = useState<IBook[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { openBookDetailsModal } = useCart();
+  const { openBookDetailsModal } = useFlipContext();
 
   useEffect(() => {
     setIsLoading(true);

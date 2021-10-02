@@ -1,6 +1,6 @@
 import { render, fireEvent } from '@testing-library/react';
 import { BookCard } from '.';
-import { useCart } from '../../contexts/useCart';
+import { useFlipContext } from '../../contexts/useFlipContext';
 
 const mockedBook = {
   title: 'Java Notes for Professionals',
@@ -13,9 +13,9 @@ const mockedBook = {
 };
 
 const mockedAddBook = jest.fn();
-const mockedUseCartHook = useCart as jest.Mock;
+const mockedUseCartHook = useFlipContext as jest.Mock;
 
-jest.mock('../../contexts/useCart');
+jest.mock('../../contexts/useFlipContext');
 
 describe('BookCard Component', () => {
   beforeEach(() => {
@@ -40,7 +40,7 @@ describe('BookCard Component', () => {
           amount: 1,
         },
       ],
-      addBook: mockedAddBook,
+      addBookToCart: mockedAddBook,
     });
   });
 

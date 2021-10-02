@@ -1,5 +1,5 @@
 import { MdAddShoppingCart } from 'react-icons/md';
-import { useCart } from '../../contexts/useCart';
+import { useFlipContext } from '../../contexts/useFlipContext';
 import { IBook } from '../../types';
 import s from './styles.module.scss';
 
@@ -9,7 +9,7 @@ interface IBookCard {
 }
 
 export function BookCard({ book, openDetails }: IBookCard): JSX.Element {
-  const { addBook } = useCart();
+  const { addBookToCart } = useFlipContext();
 
   return (
     <section className={s.bookCardContainer}>
@@ -25,7 +25,7 @@ export function BookCard({ book, openDetails }: IBookCard): JSX.Element {
         type="button"
         data-testid="add-book-button"
         className={s.addToCardButton}
-        onClick={() => addBook(book)}
+        onClick={() => addBookToCart(book)}
       >
         <div>
           <MdAddShoppingCart />

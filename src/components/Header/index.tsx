@@ -3,10 +3,10 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { GiBookmarklet } from 'react-icons/gi';
 
 import s from './styles.module.scss';
-import { useCart } from '../../contexts/useCart';
+import { useFlipContext } from '../../contexts/useFlipContext';
 
 export function Header(): JSX.Element {
-  const { cart } = useCart();
+  const { cart } = useFlipContext();
   const cartSize = cart.length;
 
   return (

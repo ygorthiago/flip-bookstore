@@ -8,13 +8,13 @@ import { Link } from 'react-router-dom';
 import { Header } from '../../components/Header';
 import s from './styles.module.scss';
 
-import { useCart } from '../../contexts/useCart';
+import { useFlipContext } from '../../contexts/useFlipContext';
 import { IBook } from '../../types';
 import { formatPrice } from '../../utils/FormatPrice';
 
 export function Cart(): JSX.Element {
   const { cart, removeBook, updateBookAmount, openBookDetailsModal } =
-    useCart();
+    useFlipContext();
 
   const cartFormatted = cart.map(book => {
     const price = book.price.replace('$', '');
