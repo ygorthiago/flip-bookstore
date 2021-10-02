@@ -65,9 +65,12 @@
   }
 
   button {
+    display: flex;
+    align-items: center;
     background: none;
     border: 0;
     padding: 6px;
+    justify-self: center;
 
     svg {
       color: var(--green);
