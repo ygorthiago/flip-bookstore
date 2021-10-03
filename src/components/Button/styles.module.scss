@@ -1,0 +1,12 @@
+.button {
+  background: linear-gradient(114.44deg, var(--green) 0%, var(--lightGreen) 100%);
+  color: var(--white);
+  border: 0;
+  border-radius: 4px;
+  padding: 0.625rem;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
