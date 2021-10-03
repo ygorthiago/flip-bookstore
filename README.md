@@ -1,8 +1,14 @@
-# Livraria Flip
+# 📖 Livraria Flip
 
 ## <a href="https://flip-bookstore.vercel.app/" target="_blank">Click here</a> to access the deployed application
 
-## 🎲 Running project locally
+## 📽 Preview
+  <div align="center">
+    <img alt="Movie catalog" title="Movie Catalog" src="https://i.ibb.co/jJtZGTY/mobile-flipbookstore.gif" height="400" align="left" />
+    <img alt="Movie catalog" title="Movie Catalog" src="https://i.ibb.co/mq5d69L/desktop-flipbookstore.gif" height="400" />
+  </div>
+  
+## ⚙ Running project locally
 
 - ### Clone this repository:
   ```bash
@@ -22,6 +28,5 @@
 - ### Run the "start" script:
   ```bash
   npm start
-
-  # The project will start on port 3000 - access http://localhost:3000
   ```
+   The project will start on port 3000 - access http://localhost:3000
