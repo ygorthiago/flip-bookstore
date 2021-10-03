@@ -42,21 +42,18 @@ describe('BookCard Component', () => {
         },
       ],
       addBookToCart: mockedAddBook,
+      openBookDetailsModal: mockedOpenBookDetails,
     });
   });
 
   it('should be able to render BookCard component', () => {
-    const component = render(
-      <BookCard book={mockedBook} openDetails={jest.fn} />,
-    );
+    const component = render(<BookCard book={mockedBook} />);
 
     expect(component).toBeTruthy();
   });
 
   it('should be able to add a book to cart', async () => {
-    const { getAllByTestId } = render(
-      <BookCard book={mockedBook} openDetails={jest.fn} />,
-    );
+    const { getAllByTestId } = render(<BookCard book={mockedBook} />);
 
     const [addFirstBook] = getAllByTestId('add-book-button');
 
@@ -66,13 +63,16 @@ describe('BookCard Component', () => {
   });
 
   it('should be able to open BookDetailsModal when the card is clicked', async () => {
-    const { getByTestId } = render(
-      <BookCard book={mockedBook} openDetails={mockedOpenBookDetails} />,
-    );
+    const { getByTestId } = render(<BookCard book={mockedBook} />);
 
-    const addFirstBook = getByTestId('book-card-info');
+    const bookCardInfo = getByTestId('book-card-info');
 
-    fireEvent.click(addFirstBook);
+    fireEvent.click(bookCardInfo);
+    fireEvent.keyPress(bookCardInfo, {
+      key: 'Enter',
+      code: 13,
+      charCode: 13,
+    });
 
     expect(mockedOpenBookDetails).toHaveBeenCalled();
   });
