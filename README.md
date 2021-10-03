@@ -4,8 +4,8 @@
 
 ## 📽 Preview
   <div align="center">
-    <img alt="Movie catalog" title="Movie Catalog" src="https://i.ibb.co/jJtZGTY/mobile-flipbookstore.gif" height="333"/>
-    <img alt="Movie catalog" title="Movie Catalog" src="https://i.ibb.co/mq5d69L/desktop-flipbookstore.gif" />
+    <img alt="Movie catalog" title="Movie Catalog" src="https://i.ibb.co/ZMxcqH1/mobile-flipbookstore.gif" height="337"/>
+    <img alt="Movie catalog" title="Movie Catalog" src="https://i.ibb.co/xC9CZG5/desktop-flipbookstore.gif" />
   </div>
   
 ## ⚙ Running project locally
