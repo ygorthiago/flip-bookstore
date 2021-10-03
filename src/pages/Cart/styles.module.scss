@@ -48,6 +48,10 @@
 
     border-radius: 1.5rem;
     cursor: pointer;
+
+    &:hover + .cartItemInfo h3 {
+      color: var(--green);
+    }
   }
 
   .subTotal {
