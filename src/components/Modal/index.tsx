@@ -5,7 +5,7 @@ import ReactModal from 'react-modal';
 interface IModalProps {
   children: JSX.Element;
   isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
+  setIsOpen: () => void;
   closeOnOverlay: boolean;
 }
 
@@ -24,7 +24,7 @@ const Modal = ({
   return (
     <ReactModal
       shouldCloseOnOverlayClick={closeOnOverlay}
-      onRequestClose={() => setIsOpen(false)}
+      onRequestClose={setIsOpen}
       isOpen={modalStatus}
       ariaHideApp={false}
       style={{
