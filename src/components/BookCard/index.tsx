@@ -1,6 +1,6 @@
-import { MdAddShoppingCart } from 'react-icons/md';
 import { useFlipContext } from '../../contexts/useFlipContext';
 import { IBook } from '../../types';
+import { ButtonAddToCart } from '../ButtonAddToCart';
 import s from './styles.module.scss';
 
 interface IBookCard {
@@ -23,20 +23,13 @@ export function BookCard({ book }: IBookCard): JSX.Element {
         <legend>{book.subtitle}</legend>
         <p>{book.price}</p>
       </div>
-      <button
-        type="button"
+      <ButtonAddToCart
         data-testid="add-book-button"
-        className={s.addToCardButton}
         onClick={e => {
           addBookToCart(book);
           e.stopPropagation();
         }}
-      >
-        <div>
-          <MdAddShoppingCart />
-        </div>
-        <span>Adicionar ao Carrinho</span>
-      </button>
+      />
     </section>
   );
 }

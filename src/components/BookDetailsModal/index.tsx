@@ -1,10 +1,10 @@
-import { MdAddShoppingCart } from 'react-icons/md';
 import { IoMdClose } from 'react-icons/io';
 import { VscStarFull } from 'react-icons/vsc';
 import { useFlipContext } from '../../contexts/useFlipContext';
 import { Loader } from '../Loader';
 import Modal from '../Modal';
 import s from './styles.module.scss';
+import { ButtonAddToCart } from '../ButtonAddToCart';
 
 export function BookDetailsModal(): JSX.Element {
   const {
@@ -57,17 +57,10 @@ export function BookDetailsModal(): JSX.Element {
                   </p>
                 </div>
               </div>
-              <button
-                type="button"
+              <ButtonAddToCart
                 data-testid="add-book-button"
-                className={s.addToCardButton}
                 onClick={() => addBookToCart(bookDetails)}
-              >
-                <div>
-                  <MdAddShoppingCart />
-                </div>
-                <span>Adicionar ao Carrinho</span>
-              </button>
+              />
             </div>
           </>
         ) : (
