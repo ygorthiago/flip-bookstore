@@ -68,9 +68,11 @@ export function Cart(): JSX.Element {
               alt={book.title}
               onClick={() => openBookDetailsModal(book.isbn13)}
               onKeyPress={() => openBookDetailsModal(book.isbn13)}
+              data-testid="cart-book-image"
             />
             <div className={s.cartItemInfo}>
               <h3
+                data-testid="cart-book-title"
                 onClick={() => openBookDetailsModal(book.isbn13)}
                 onKeyPress={() => openBookDetailsModal(book.isbn13)}
               >
@@ -119,7 +121,9 @@ export function Cart(): JSX.Element {
           </div>
         </footer>
       ) : (
-        <footer className={s.cartEmpty}>Carrinho vazio</footer>
+        <footer className={s.cartEmpty} data-testid="cart-empty">
+          Carrinho vazio
+        </footer>
       )}
       <CheckoutSuccessModal />
     </main>

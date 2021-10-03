@@ -14,6 +14,7 @@ jest.mock('react-router-dom', () => {
 const mockedRemoveBook = jest.fn();
 const mockedUpdateBookAmount = jest.fn();
 const mockedUseCartHook = useFlipContext as jest.Mock;
+const mockedOpenBookDetails = jest.fn();
 
 jest.mock('../../contexts/useFlipContext');
 
@@ -42,6 +43,7 @@ describe('Cart Page', () => {
       ],
       removeBook: mockedRemoveBook,
       updateBookAmount: mockedUpdateBookAmount,
+      openBookDetailsModal: mockedOpenBookDetails,
     });
   });
 
@@ -141,5 +143,40 @@ describe('Cart Page', () => {
 
     expect(firstBook).not.toBeInTheDocument();
     expect(secondBook).toBeInTheDocument();
+  });
+
+  it('should be able to open BookDetailsModal', () => {
+    const { getAllByTestId } = render(<Cart />);
+
+    const [firstBookImage] = getAllByTestId('cart-book-image');
+    const [firstBookTitle] = getAllByTestId('cart-book-title');
+
+    fireEvent.click(firstBookImage);
+    fireEvent.keyPress(firstBookImage, {
+      key: 'Enter',
+      code: 13,
+      charCode: 13,
+    });
+
+    fireEvent.click(firstBookTitle);
+    fireEvent.keyPress(firstBookTitle, {
+      key: 'Enter',
+      code: 13,
+      charCode: 13,
+    });
+
+    expect(mockedOpenBookDetails).toHaveBeenCalled();
+  });
+
+  it('should show message when cart is empty', () => {
+    mockedUseCartHook.mockReturnValueOnce({
+      cart: [],
+    });
+
+    const { getByTestId } = render(<Cart />);
+
+    const cartEmptyComponent = getByTestId('cart-empty');
+
+    expect(cartEmptyComponent.textContent).toBe('Carrinho vazio');
   });
 });
