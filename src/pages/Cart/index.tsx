@@ -12,6 +12,7 @@ import { useFlipContext } from '../../contexts/useFlipContext';
 import { IBook } from '../../types';
 import { formatPrice } from '../../utils/FormatPrice';
 import { CheckoutSuccessModal } from '../../components/CheckoutSuccess';
+import { Button } from '../../components/Button';
 
 export function Cart(): JSX.Element {
   const {
@@ -112,9 +113,9 @@ export function Cart(): JSX.Element {
       })}
       {cartFormatted.length ? (
         <footer className={s.total}>
-          <button type="button" onClick={finishCheckout}>
+          <Button type="button" onClick={finishCheckout}>
             Finalizar compra
-          </button>
+          </Button>
           <div>
             <span>TOTAL</span>
             <strong>{total}</strong>

@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { useHistory } from 'react-router';
 import { useFlipContext } from '../../contexts/useFlipContext';
+import { Button } from '../Button';
 import Modal from '../Modal';
 import s from './styles.module.scss';
 
@@ -24,13 +25,13 @@ export function CheckoutSuccessModal(): JSX.Element {
         <FaCheckCircle size={60} />
         <h1>Compra finalizada com sucesso!</h1>
         <h3>Boa leitura!</h3>
-        <button
+        <Button
           type="button"
           data-testid="continue-shopping-button"
           onClick={continueShopping}
         >
           Continuar comprando
-        </button>
+        </Button>
       </div>
     </Modal>
   );
