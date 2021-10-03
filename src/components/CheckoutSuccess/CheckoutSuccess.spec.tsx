@@ -2,10 +2,12 @@ import { render, fireEvent } from '@testing-library/react';
 import { CheckoutSuccessModal } from '.';
 import { useFlipContext } from '../../contexts/useFlipContext';
 
+const mockedPush = jest.fn();
+
 jest.mock('react-router', () => {
   return {
     useHistory: () => ({
-      push: jest.fn(),
+      push: mockedPush,
     }),
   };
 });
@@ -46,5 +48,6 @@ describe('BookCard Component', () => {
     fireEvent.click(continueShoppingButton);
 
     expect(mockedSetIsCheckoutSuccessOpen).toHaveBeenCalled();
+    expect(mockedPush).toHaveBeenCalled();
   });
 });
