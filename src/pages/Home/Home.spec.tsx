@@ -42,7 +42,7 @@ describe('Home Page', () => {
     expect(listItems).toBeInTheDocument();
   });
 
-  it('should show Loader component when data is fetching', async () => {
+  it('should show Loader component only when data is fetching', async () => {
     const { getByTestId } = render(<Home />);
 
     const loader = getByTestId('loader');
