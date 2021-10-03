@@ -1,47 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { BookCard } from '../../components/BookCard';
 import { Header } from '../../components/Header';
 import { Loader } from '../../components/Loader';
 import { useFlipContext } from '../../contexts/useFlipContext';
-import { api } from '../../services/api';
-import { IBook } from '../../types';
 import s from './styles.module.scss';
 
 export function Home(): JSX.Element {
-  const [books, setBooks] = useState<IBook[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const { openBookDetailsModal } = useFlipContext();
+  const { books, isGetBooksLoading, getBooks } = useFlipContext();
 
   useEffect(() => {
-    setIsLoading(true);
-
-    api
-      .get('/search/prog')
-      .then(response => {
-        setBooks(response.data.books);
-      })
-      .catch(error => {
-        console.error(error);
-      })
-      .finally(() => setIsLoading(false));
-  }, []);
+    getBooks();
+  }, [getBooks]);
 
   return (
     <main className={s.homeContainer}>
       <Header />
       <article className={s.bookListContainer} data-testid="list-books">
-        {books &&
-          books.map(book => {
-            return (
-              <BookCard
-                key={book.isbn13}
-                book={book}
-                openDetails={() => openBookDetailsModal(book.isbn13)}
-              />
-            );
-          })}
+        {books && books.map(book => <BookCard key={book.isbn13} book={book} />)}
       </article>
-      {isLoading && (
+      {isGetBooksLoading && (
         <div className={s.loaderContainer}>
           <Loader />
         </div>

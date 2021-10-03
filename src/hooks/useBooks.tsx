@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { api } from '../services/api';
-import { IBookDetails } from '../types';
+import { IBook, IBookDetails } from '../types';
 
 export interface IUseBookHook {
   isBookDetailsOpen: boolean;
@@ -10,12 +10,17 @@ export interface IUseBookHook {
   bookDetails: IBookDetails | undefined;
   isCheckoutSuccessOpen: boolean;
   setIsCheckoutSuccessOpen: (isOpen: boolean) => void;
+  books: IBook[];
+  isGetBooksLoading: boolean;
+  getBooks: () => void;
 }
 
 export function useBooksHook(): IUseBookHook {
   const [isCheckoutSuccessOpen, setIsCheckoutSuccessOpen] = useState(false);
   const [isBookDetailsOpen, setIsBookDetailsOpen] = useState(false);
   const [bookDetails, setBookDetails] = useState<IBookDetails | undefined>();
+  const [books, setBooks] = useState<IBook[]>([]);
+  const [isGetBooksLoading, setIsGetBooksLoading] = useState(false);
 
   const openBookDetailsModal = useCallback((bookIsbn13: string) => {
     setIsBookDetailsOpen(true);
@@ -28,6 +33,20 @@ export function useBooksHook(): IUseBookHook {
       .catch(error => {
         console.error(error);
       });
+  }, []);
+
+  const getBooks = useCallback(() => {
+    setIsGetBooksLoading(true);
+
+    api
+      .get('/search/prog')
+      .then(response => {
+        setBooks(response.data.books);
+      })
+      .catch(error => {
+        console.error(error);
+      })
+      .finally(() => setIsGetBooksLoading(false));
   }, []);
 
   const closeBookDetailsModal = useCallback(() => {
@@ -43,5 +62,8 @@ export function useBooksHook(): IUseBookHook {
     bookDetails,
     isCheckoutSuccessOpen,
     setIsCheckoutSuccessOpen,
+    books,
+    isGetBooksLoading,
+    getBooks,
   };
 }

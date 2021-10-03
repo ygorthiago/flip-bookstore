@@ -5,18 +5,17 @@ import s from './styles.module.scss';
 
 interface IBookCard {
   book: IBook;
-  openDetails: () => void;
 }
 
-export function BookCard({ book, openDetails }: IBookCard): JSX.Element {
-  const { addBookToCart } = useFlipContext();
+export function BookCard({ book }: IBookCard): JSX.Element {
+  const { addBookToCart, openBookDetailsModal } = useFlipContext();
 
   return (
     <section
       className={s.bookCardContainer}
-      onClick={openDetails}
+      onClick={() => openBookDetailsModal(book.isbn13)}
       data-testid="book-card-info"
-      onKeyPress={openDetails}
+      onKeyPress={() => openBookDetailsModal(book.isbn13)}
     >
       <h3 className={s.bookTitle}>{book.title}</h3>
       <img src={book.image} alt={book.title} loading="lazy" />
