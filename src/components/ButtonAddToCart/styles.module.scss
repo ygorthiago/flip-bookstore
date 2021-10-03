@@ -1,0 +1,30 @@
+.addToCartButton {
+  background: linear-gradient(114.44deg, var(--green) 0%, var(--lightGreen) 100%);
+  color: var(--white);
+  border: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  align-self: center;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  span {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    padding: 0 10px;
+    color: var(--white);
+  }   
+}
