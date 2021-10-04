@@ -20,10 +20,12 @@ export function Home(): JSX.Element {
       <article className={s.bookListContainer} data-testid="list-books">
         {books && books.map(book => <BookCard key={book.isbn13} book={book} />)}
       </article>
-      <div className={s.loaderAndErrorContainer}>
-        {isGetBooksLoading && <Loader />}
-        {isGetBooksError && <ErrorRetry retryFunction={() => getBooks()} />}
-      </div>
+      {(isGetBooksLoading || isGetBooksError) && (
+        <div className={s.loaderAndErrorContainer}>
+          {isGetBooksLoading && <Loader />}
+          {isGetBooksError && <ErrorRetry retryFunction={() => getBooks()} />}
+        </div>
+      )}
     </main>
   );
 }
