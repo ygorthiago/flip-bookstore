@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { ReactNode } from 'react';
 import { Home } from '.';
@@ -64,5 +64,57 @@ describe('Home Page', () => {
 
     const loader = getByTestId('loader');
     expect(loader).toBeInTheDocument();
+  });
+
+  it('should show error/retry component when some error ocurred', () => {
+    mockedUseFlipContext.mockReturnValue({
+      books: [],
+      cart: [],
+      isGetBooksLoading: false,
+      isGetBooksError: true,
+      getBooks: jest.fn(),
+    });
+
+    const { getByTestId } = render(<Home />);
+
+    const errorComponent = getByTestId('error-component');
+
+    expect(errorComponent).toBeTruthy();
+  });
+
+  it('should show error/retry component when some error ocurred', () => {
+    mockedUseFlipContext.mockReturnValue({
+      books: [],
+      cart: [],
+      isGetBooksLoading: false,
+      isGetBooksError: true,
+      getBooks: jest.fn(),
+    });
+
+    const { getByTestId } = render(<Home />);
+
+    const errorComponent = getByTestId('error-component');
+
+    expect(errorComponent).toBeTruthy();
+  });
+
+  it('should show retry getBooks request when retry button is clicked', () => {
+    const mockedGetBooks = jest.fn();
+
+    mockedUseFlipContext.mockReturnValue({
+      books: [],
+      cart: [],
+      isGetBooksLoading: false,
+      isGetBooksError: true,
+      getBooks: mockedGetBooks,
+    });
+
+    const { getByTestId } = render(<Home />);
+
+    const retryButton = getByTestId('error-retry-button');
+
+    fireEvent.click(retryButton);
+
+    expect(mockedGetBooks).toHaveBeenCalled();
   });
 });

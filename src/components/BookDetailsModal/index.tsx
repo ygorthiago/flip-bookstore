@@ -5,6 +5,7 @@ import { Loader } from '../Loader';
 import Modal from '../Modal';
 import s from './styles.module.scss';
 import { ButtonAddToCart } from '../ButtonAddToCart';
+import { ErrorRetry } from '../ErrorRetry';
 
 export function BookDetailsModal(): JSX.Element {
   const {
@@ -12,6 +13,10 @@ export function BookDetailsModal(): JSX.Element {
     isBookDetailsOpen,
     closeBookDetailsModal,
     bookDetails,
+    isBookDetailsError,
+    isBookDetailsLoading,
+    getBookDetails,
+    selectedBook,
   } = useFlipContext();
 
   return (
@@ -22,7 +27,7 @@ export function BookDetailsModal(): JSX.Element {
     >
       <div className={s.bookCardContainer}>
         <IoMdClose onClick={closeBookDetailsModal} />
-        {bookDetails ? (
+        {bookDetails && (
           <>
             <h3 className={s.bookTitle}>{bookDetails.title}</h3>
             <img src={bookDetails.image} alt={bookDetails.title} />
@@ -63,11 +68,13 @@ export function BookDetailsModal(): JSX.Element {
               />
             </div>
           </>
-        ) : (
-          <div className={s.loaderContainer}>
-            <Loader />
-          </div>
         )}
+        <div className={s.loaderAndErrorContainer}>
+          {isBookDetailsLoading && <Loader />}
+          {isBookDetailsError && (
+            <ErrorRetry retryFunction={() => getBookDetails(selectedBook)} />
+          )}
+        </div>
       </div>
     </Modal>
   );

@@ -2,22 +2,13 @@ import { createContext, ReactNode, useCallback, useContext } from 'react';
 import { IBook } from '../types';
 import { IUseBookHook, useBooksHook } from '../hooks/useBooks';
 import { IToastHook, useToastHook } from '../hooks/useToast';
-import { useCartHook } from '../hooks/useCart';
+import { ICartHook, useCartHook } from '../hooks/useCart';
 
 interface ICartProviderProps {
   children: ReactNode;
 }
 
-interface IUpdateBookAmount {
-  bookIsbn13: string;
-  amount: number;
-}
-
-interface IFlipContextData extends IUseBookHook, IToastHook {
-  cart: IBook[];
-  addBook: (book: IBook) => Promise<void>;
-  removeBook: (bookIsbn13: string) => void;
-  updateBookAmount: ({ bookIsbn13, amount }: IUpdateBookAmount) => void;
+interface IFlipContextData extends IUseBookHook, IToastHook, ICartHook {
   addBookToCart: (book: IBook) => void;
   finishCheckout: () => void;
 }

@@ -47,6 +47,7 @@ describe('BookDetailsModal Component', () => {
       bookDetails: undefined,
       addBookToCart: mockedAddBookToCart,
       isBookDetailsOpen: true,
+      isBookDetailsLoading: true,
       addToast: mockedAddToast,
     });
 
@@ -55,5 +56,43 @@ describe('BookDetailsModal Component', () => {
     const loadingComponent = getByTestId('loader');
 
     expect(loadingComponent).toBeTruthy();
+  });
+
+  it('should show error/retry component when some error ocurred', () => {
+    mockedFlipContext.mockReturnValue({
+      bookDetails: undefined,
+      addBookToCart: mockedAddBookToCart,
+      isBookDetailsOpen: true,
+      isBookDetailsLoading: false,
+      isBookDetailsError: true,
+      addToast: mockedAddToast,
+    });
+
+    const { getByTestId } = render(<BookDetailsModal />);
+
+    const errorComponent = getByTestId('error-component');
+
+    expect(errorComponent).toBeTruthy();
+  });
+
+  it('should show retry getBooks request when retry button is clicked', () => {
+    const mockedGetBookDetails = jest.fn();
+
+    mockedFlipContext.mockReturnValue({
+      bookDetails: undefined,
+      addBookToCart: mockedAddBookToCart,
+      isBookDetailsOpen: true,
+      isBookDetailsLoading: false,
+      isBookDetailsError: true,
+      getBookDetails: mockedGetBookDetails,
+    });
+
+    const { getByTestId } = render(<BookDetailsModal />);
+
+    const retryButton = getByTestId('error-retry-button');
+
+    fireEvent.click(retryButton);
+
+    expect(mockedGetBookDetails).toHaveBeenCalled();
   });
 });
