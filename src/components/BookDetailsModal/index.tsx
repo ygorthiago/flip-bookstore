@@ -6,6 +6,7 @@ import Modal from '../Modal';
 import s from './styles.module.scss';
 import { ButtonAddToCart } from '../ButtonAddToCart';
 import { ErrorRetry } from '../ErrorRetry';
+import { bookDetailsInfos } from './bookDetailsInfos';
 
 export function BookDetailsModal(): JSX.Element {
   const {
@@ -18,6 +19,8 @@ export function BookDetailsModal(): JSX.Element {
     getBookDetails,
     selectedBook,
   } = useFlipContext();
+
+  const detailsInfos = bookDetailsInfos(bookDetails);
 
   return (
     <Modal
@@ -35,32 +38,15 @@ export function BookDetailsModal(): JSX.Element {
               <legend>{bookDetails.desc}</legend>
               <p className={s.price}>{bookDetails?.price}</p>
               <div className={s.bookDetails}>
-                <div>
-                  <h3>Autor</h3>
-                  <p>{bookDetails.authors}</p>
-                </div>
-                <div>
-                  <h3>Editora</h3>
-                  <p>{bookDetails.publisher}</p>
-                </div>
-                <div>
-                  <h3>Ano</h3>
-                  <p>{bookDetails.year}</p>
-                </div>
-                <div>
-                  <h3>Idioma</h3>
-                  <p>{bookDetails.language}</p>
-                </div>
-                <div>
-                  <h3>Páginas</h3>
-                  <p>{bookDetails.pages}</p>
-                </div>
-                <div>
-                  <h3>Avaliação</h3>
-                  <p>
-                    {bookDetails.rating} <VscStarFull size={18} />
-                  </p>
-                </div>
+                {detailsInfos.map(info => (
+                  <div key={info.title}>
+                    <h3>{info.title}</h3>
+                    <p>
+                      {info.data}{' '}
+                      {info.title === 'Avaliação' && <VscStarFull size={18} />}
+                    </p>
+                  </div>
+                ))}
               </div>
               <ButtonAddToCart
                 data-testid="add-book-button"
